@@ -1,4 +1,5 @@
 import { findDOMNode } from "react-dom";
+import Link from "next/link";
 import {
   Card,
   CardContent,
@@ -90,6 +91,15 @@ export default class Login extends React.Component {
               <Button style={{ width: "100%" }} raised color="primary">
                 Login
               </Button>
+              <Typography
+                color={"accent"}
+                style={{
+                  marginTop: 8,
+                  cursor: "pointer"
+                }}
+              >
+                Don't have an account? Why not register?
+              </Typography>
             </CardContent>
           </Card>
         </Popover>
