@@ -8,7 +8,7 @@ import Button from "material-ui/Button";
 import IconButton from "material-ui/IconButton";
 import MenuIcon from "material-ui-icons/Menu";
 
-import Login from "./login";
+import Authenticator from "./authenticator";
 
 const styles = {
   root: {
@@ -44,7 +44,7 @@ function Header(props) {
           <Typography type="title" color="inherit" className={classes.flex}>
             Porsche Part Picker
           </Typography>
-          <Login />
+          <Authenticator />
         </Toolbar>
       </AppBar>
     </div>

@@ -28,7 +28,7 @@ var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
-var _header = require("../src/header");
+var _header = require("../src/components/header");
 
 var _header2 = _interopRequireDefault(_header);
 

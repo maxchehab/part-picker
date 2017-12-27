@@ -1,4 +1,4 @@
-import Header from "../src/header";
+import Header from "../src/components/header";
 
 export default class Index extends React.Component {
   render() {

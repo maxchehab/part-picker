@@ -1,5 +1,7 @@
 import { findDOMNode } from "react-dom";
 import Link from "next/link";
+import Login from "./login";
+import Register from "./register";
 import {
   Card,
   CardContent,
@@ -10,16 +12,17 @@ import {
   Popover
 } from "material-ui";
 
-export default class Login extends React.Component {
+export default class Authenticator extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      open: false,
-      anchorEl: null,
-      positionTop: 200, // Just so the popover can be spotted more easily
-      positionLeft: 400, // Same as above
-      anchorReference: "anchorEl"
+      email: "",
+      password: "",
+      confirmPassword: "",
+      showLogin: true
     };
+    this.changeInputByName = this.changeInputByName.bind(this);
+    this.toggleLogin = this.toggleLogin.bind(this);
   }
 
   handleClickButton = () => {
@@ -35,8 +38,17 @@ export default class Login extends React.Component {
     });
   };
 
+  changeInputByName(event) {
+    const change = {};
+    change[event.target.name] = event.target.value;
+    this.setState(change);
+  }
+
+  toggleLogin() {
+    this.setState({ showLogin: !this.state.showLogin });
+  }
+
   render() {
-    const { classes } = this.props;
     return (
       <div>
         <Button
@@ -73,33 +85,24 @@ export default class Login extends React.Component {
             }}
           >
             <CardContent>
-              <TextField
-                fullWidth
-                id="email"
-                label="Email"
-                type="email"
-                margin="normal"
-                autoFocus
-              />
-              <TextField
-                fullWidth
-                id="password"
-                label="Password"
-                type="password"
-                margin="normal"
-              />
-              <Button style={{ width: "100%" }} raised color="primary">
-                Login
-              </Button>
-              <Typography
-                color={"accent"}
-                style={{
-                  marginTop: 8,
-                  cursor: "pointer"
-                }}
-              >
-                Don't have an account? Why not register?
-              </Typography>
+              {this.state.showLogin && (
+                <Login
+                  onChange={this.changeInputByName}
+                  toggle={this.toggleLogin}
+                  email={this.state.email}
+                  password={this.state.password}
+                />
+              )}
+
+              {!this.state.showLogin && (
+                <Register
+                  onChange={this.changeInputByName}
+                  toggle={this.toggleLogin}
+                  email={this.state.email}
+                  password={this.state.password}
+                  confirmPassword={this.state.confirmPassword}
+                />
+              )}
             </CardContent>
           </Card>
         </Popover>
